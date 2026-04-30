@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>우리반 학급 포털</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: #f4f7fb;
+      color: #1f2937;
+    }
+
+    header {
+      background: #ffffff;
+      border-bottom: 1px solid #e5e7eb;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 18px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: 800;
+      color: #2563eb;
+    }
+
+    .menu {
+      display: flex;
+      gap: 18px;
+      font-size: 15px;
+    }
+
+    .menu a {
+      color: #374151;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .menu a:hover {
+      color: #2563eb;
+    }
+
+    .hero {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 70px 20px 40px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 30px;
+      align-items: center;
+      position: relative;
+    }
+
+    .left-bg-image {
+      position: absolute;
+      left: -400px;
+      top: 100px;
+      width: 400px;
+      height: 700px;
+    }
+
+    .left-bg-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .side-image img {
+      width: 100%;
+      border-radius: 16px;
+      object-fit: cover;
+      height: 100%;
+    }
+
+    .hero-text h1 {
+      font-size: 44px;
+      line-height: 1.2;
+      margin-bottom: 18px;
+    }
+
+    .hero-text p {
+      font-size: 18px;
+      color: #6b7280;
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 13px 20px;
+      border-radius: 12px;
+      border: none;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-primary {
+      background: #2563eb;
+      color: white;
+    }
+
+    .btn-secondary {
+      background: #e0ecff;
+      color: #2563eb;
+    }
+
+    .today-card {
+      background: #eef2ff;
+      color: #1f2937;
+      border-radius: 26px;
+      padding: 30px;
+      border: 1px solid #c7d2fe;
+      box-shadow: 0 10px 30px rgba(79, 70, 229, 0.15);
+      backdrop-filter: blur(6px);
+    }
+
+    .today-card .date {
+      font-size: 15px;
+      color: #4f46e5;
+      margin-bottom: 14px;
+      font-weight: 600;
+    }
+
+    .today-card h2 {
+      font-size: 28px;
+      margin-bottom: 14px;
+      color: #3730a3;
+    }
+
+    .today-card p {
+      line-height: 1.6;
+      color: #374151;
+    }
+
+    .today-card .date {
+      font-size: 15px;
+      color: #6b7280;
+      margin-bottom: 14px;
+    }
+
+    .today-card h2 {
+      font-size: 28px;
+      margin-bottom: 14px;
+    }
+
+    .today-card p {
+      line-height: 1.6;
+      color: #374151;
+    }
+
+    .today-card .date {
+      font-size: 15px;
+      opacity: 0.85;
+      margin-bottom: 14px;
+    }
+
+    .today-card h2 {
+      font-size: 28px;
+      margin-bottom: 14px;
+    }
+
+    .today-card p {
+      line-height: 1.6;
+      opacity: 0.95;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .section-title {
+      font-size: 26px;
+      margin: 35px 0 18px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 22px;
+      padding: 24px;
+      min-height: 170px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+      transition: 0.25s;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 14px 34px rgba(15, 23, 42, 0.1);
+    }
+
+    .card-icon {
+      font-size: 30px;
+      margin-bottom: 14px;
+    }
+
+    .card h3 {
+      font-size: 19px;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      font-size: 14px;
+      line-height: 1.5;
+      color: #6b7280;
+    }
+
+    .info-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .panel {
+      background: white;
+      border-radius: 22px;
+      padding: 24px;
+      border: 1px solid #e5e7eb;
+    }
+
+    .panel h3 {
+      margin-bottom: 16px;
+      font-size: 20px;
+    }
+
+    .notice-list, .schedule-list, .meal-list {
+      list-style: none;
+    }
+
+    .notice-list li, .schedule-list li, .meal-list li {
+      padding: 12px 0;
+      border-bottom: 1px solid #f1f5f9;
+      color: #4b5563;
+    }
+
+    .notice-list li:last-child,
+    .schedule-list li:last-child,
+    .meal-list li:last-child {
+      border-bottom: none;
+    }
+
+    .feedback-box {
+      margin: 35px 0 60px;
+      background: #111827;
+      color: white;
+      border-radius: 26px;
+      padding: 34px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .feedback-box h2 {
+      margin-bottom: 10px;
+    }
+
+    .feedback-box p {
+      color: #d1d5db;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      color: #6b7280;
+      border-top: 1px solid #e5e7eb;
+      background: white;
+    }
+
+    @media (max-width: 850px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding-top: 45px;
+      }
+
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .info-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .feedback-box {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .nav {
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      .menu {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .hero-text h1 {
+        font-size: 34px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="nav">
+      <div class="logo"><사이트이름적기></div>
+      <div class="menu">
+        <a href="#home">홈</a>
+        <a href="#meal">급식</a>
+        <a href="#schedule">시간표</a>
+        <a href="#feedback">의견함</a>
+      </div>
+    </nav>
+  </header>
+
+  <section class="hero" id="home">
+    <div class="left-bg-image">
+      <img src="images/school.png" alt="이미지" />
+    </div>
+    <div class="hero-text">
+      <h1><메인타이틀? 적기></h1>
+      <p>
+        <부가타이틀? 적기>
+      </p>
+      <div class="hero-buttons">
+        <a href="#meal" class="btn btn-primary">오늘 급식 보기</a>
+        <a href="#feedback" class="btn btn-secondary">의견 남기기</a>
+      </div>
+    </div>
+
+    <div class="today-card">
+      <div class="date">2026년 4월 30일 목요일</div>
+      <h2>오늘의 학급 정보</h2>
+      <p>
+        <학급정보?부가정보 적기>
+      </p>
+    </div>
+  </section>
+
+  <main>
+    <h2 class="section-title">탭</h2>
+    <section class="grid">
+      <article class="card">
+        <div class="card-icon">[]</div>
+        <h3><탭1></h3>
+        <p><탭1 내용></p>
+      </article>
+
+      <article class="card">
+        <div class="card-icon">[]</div>
+        <h3><탭2></h3>
+        <p><탭2 내용></p>
+      </article>
+
+      <article class="card">
+        <div class="card-icon">[]</div>
+        <h3><탭3></h3>
+        <p><탭3 내용></p>
+      </article>
+
+      <article class="card">
+        <div class="card-icon">[]</div>
+        <h3><탭4></h3>
+        <p><탭4 내용></p>
+      </article>
+    </section>
+
+    <h2 class="section-title">오늘의 정보</h2>
+    <section class="info-layout">
+      <div class="panel" id="meal">
+        <h3>🍱 오늘의 급식</h3>
+        <ul class="meal-list">
+          <li>메뉴1</li>
+          <li>메뉴2</li>
+          <li>메뉴3</li>
+          <li>메뉴4</li>
+          <li>메뉴5</li>
+        </ul>
+      </div>
+
+      <div class="panel" id="schedule">
+        <h3>📚 오늘의 시간표</h3>
+        <ul class="schedule-list">
+          <li>1교시 - <></li>
+          <li>2교시 - <></li>
+          <li>3교시 - <></li>
+          <li>4교시 - <></li>
+          <li>5교시 - <></li>
+          <li>6교시 - <></li>
+          <li>7교시 - <></li>
+        </ul>
+      </div>
+    </section>
+
+    <h2 class="section-title" id="notice">학급 공지사항</h2>
+    <section class="panel">
+      <ul class="notice-list">
+        <li><strong>-</strong> -</li>
+        <li><strong>-</strong> -</li>
+        <li><strong>-</strong> -</li>
+      </ul>
+    </section>
+
+    <section class="feedback-box" id="feedback">
+      <div>
+        <h2>익명 의견 제시함</h2>
+        <p><설명>/p>
+      </div>
+      <a href="#" class="btn btn-primary">의견 작성하기</a>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 <사이트이름> | 제작: 3학년 8반 학급부서 메소(Make Software) <김태양/김영훈/은성록></p>
+  </footer>
+</body>
+</html>
